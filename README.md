@@ -40,6 +40,23 @@ Install front-end dependencies
 
 `npm install`
 
+## Run App
+Generate key
+
+`php artisan key:generate`
+
+Make migrations
+
+`php artisan migrate`
+
+Run backend server 
+
+`php artisan serve`
+
+Run frontend server
+
+`npm run dev`
+
 
 ## License
 Developed by Juan Pablo Müller
