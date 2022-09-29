@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>To Do Waitry</title>
+        <title>To Do List</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -61,6 +61,30 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .btn-{
+                display: inline-block;
+                font-weight: 900;
+                text-align: center;
+                background-color: transparent;
+                border: 1px solid transparent;
+                padding: 0.375rem 0.75rem;
+                font-size: 0.9rem;
+                line-height: 1.6;
+                border-radius: 0.25rem;
+            }
+
+            .btn-red{
+                color: #fff;
+                background-color: #e3342f;
+                border-color: #e3342f;
+            }
+
+            .btn-red:hover {
+                color: #fff;
+                background-color: #d0211c;
+                border-color: #c51f1a;
+            }
         </style>
     </head>
     <body>
@@ -83,6 +107,11 @@
                 <div class="title m-b-md" style="color: red">
                     To Do App
                 </div>
+                <a href="{{ url('/home') }}">
+                <button class="btn- btn-red">
+                    Manage my tasks
+                </button>
+                </a>
             </div>
         </div>
     </body>

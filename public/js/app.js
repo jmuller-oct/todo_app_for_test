@@ -1999,11 +1999,12 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('current_user').then(function (res) {
       _this.current_user = res.data;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("api/tasks?user_id=".concat(_this.current_user)).then(function (res) {
+        console.log(res);
         _this.tasks = res.data.filter(function (x) {
-          return x.done === 0;
+          return !x.done;
         });
         _this.doneTasks = res.data.filter(function (x) {
-          return x.done === 1;
+          return x.done;
         });
 
         _this.initAppendFormData();
@@ -38591,18 +38592,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col" }, [
-      _c(
-        "h2",
-        {
-          staticClass: "headline text-center my-3",
-          staticStyle: { color: "red" }
-        },
-        [
-          _c("b", [_vm._v("Waitry")]),
-          _vm._v(" "),
-          _c("b", { staticStyle: { color: "black" } }, [_vm._v("To Do List")])
-        ]
-      )
+      _c("h2", { staticClass: "headline text-center my-3" }, [
+        _c("b", [_vm._v("To Do")]),
+        _vm._v(" "),
+        _c("b", { staticStyle: { color: "red" } }, [_vm._v(" List")])
+      ])
     ])
   },
   function() {
@@ -51288,8 +51282,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/colo/Laravel/waitry-todo/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/colo/Laravel/waitry-todo/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/colo/Code/todo_app_for_test/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/colo/Code/todo_app_for_test/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

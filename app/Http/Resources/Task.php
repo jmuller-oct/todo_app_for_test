@@ -9,13 +9,12 @@ class Task extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function toArray($request)
-    {
+    public function toArray($request) {
         $result = parent::toArray($request);
-        $result['created'] = $this -> created_at -> diffForHumans();
+        $result['created'] = $this->created_at->diffForHumans();
         return $result;
     }
 }

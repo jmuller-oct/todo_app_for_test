@@ -11,8 +11,7 @@ class Task extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 
@@ -21,8 +20,7 @@ class Task extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             'description' => 'required',
             'priority' => 'required',

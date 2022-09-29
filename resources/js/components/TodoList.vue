@@ -7,8 +7,8 @@
                         <div class="row">
                             <div class="col"></div>
                             <div class="col">
-                                <h2 class="headline text-center my-3" style="color:red">
-                                     <b>Waitry</b> <b style="color:black;">To Do List</b>
+                                <h2 class="headline text-center my-3">
+                                     <b>To Do</b> <b style="color:red;"> List</b>
                                 </h2>
                             </div>
                             <div class="col align-self-center d-flex justify-content-end">
@@ -84,8 +84,9 @@
                 res => {
                     this.current_user = res.data;
                     axios.get(`api/tasks?user_id=${this.current_user}`).then(res => {
-                        this.tasks = res.data.filter(x => (x.done===0));
-                        this.doneTasks = res.data.filter(x => (x.done===1));
+                        console.log(res)
+                        this.tasks = res.data.filter(x => (!x.done));
+                        this.doneTasks = res.data.filter(x => (x.done));
                         this.initAppendFormData();
                     });
                 });

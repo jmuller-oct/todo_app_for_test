@@ -15,8 +15,8 @@ class TasksController extends Controller
 {
     protected $task;
 
-    public function __construct(Task $task){
-        $this -> task = $task;
+    public function __construct(Task $task) {
+        $this->task = $task;
     }
 
     /**
@@ -24,69 +24,65 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        if ($request->has('user_id')){
-           return $this -> task -> where ('user_id','=',$request->user_id) -> orderBy ('priority','asc') -> get();
+    public function index(Request $request) {
+        if ($request->has('user_id')) {
+            return $this->task->where('user_id', '=', $request->user_id)->orderBy('priority', 'asc')->get();
         }
-        return $this -> task -> orderBy ('priority','asc') -> get();
+        return $this->task->orderBy('priority', 'asc')->get();
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TaskRequest $request)
-    {
-        if (!Auth::check()) { return response('Unathorized',401); }
+    public function store(TaskRequest $request) {
+        if (!Auth::check()) {
+            return response('Unathorized', 401);
+        }
 
-        $task = $this -> task -> create($request->all());
+        $task = $this->task->create($request->all());
 
-        return response() -> json(new TaskResource($task),201);
+        return response()->json(new TaskResource($task), 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Task  $task
+     * @param \App\Task $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
-    {
+    public function show(Task $task) {
         return new TaskResource($task);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Task $task
      * @return \Illuminate\Http\Response
      */
-    public function update(TaskRequest $request, Task $task)
-    {
-        if (!Auth::check()) { return response('Unathorized',401); }
+    public function update(TaskRequest $request, Task $task) {
+        if (!Auth::check()) {
+            return response('Unathorized', 401);
+        }
 
-        $task -> update($request -> all());
+        $task->update($request->all());
 
-        return response() -> json(new TaskResource($task));
+        return response()->json(new TaskResource($task));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Task  $task
+     * @param \App\Task $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
-    {
+    public function destroy(Task $task) {
+        $task->delete();
 
-        if (!Auth::check()) { return response('Unathorized',401); }
-
-        $task -> delete();
-
-        return response() -> json(null,204);
+        return response()->json(null, 204);
     }
 }

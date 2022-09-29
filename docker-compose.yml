@@ -1,0 +1,46 @@
+version: '3.8'
+
+networks:
+  app-network:
+
+volumes:
+  app-data:
+
+services:
+  webserver:
+    image: nginx:1.21.6-alpine
+    container_name: nginx-todo-app
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www
+      - .docker/nginx:/etc/nginx/conf.d
+    networks:
+      app-network:
+
+  app:
+    build:
+      context: .docker/php
+      dockerfile: dockerfile
+    container_name: todo-app-application
+    volumes:
+      - ./:/var/www
+      - .docker/php/php.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      app-network:
+
+  db:
+    image: postgres:12.10-alpine
+    container_name: todo-app-db
+    environment:
+        - POSTGRES_DB=laravel
+        - POSTGRES_USER=root
+        - POSTGRES_PASSWORD=password
+    ports:
+        - "5432:5432"
+    expose:
+        - 5432
+    networks:
+      app-network:
+
